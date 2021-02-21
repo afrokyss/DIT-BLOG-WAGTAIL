@@ -1,0 +1,15 @@
+.nav-wrapper .inner {
+    background-color: black;
+}
+.nav-main a {
+    color: #fff;
+}
+
+.content {
+    background-color:rgb(215, 224, 224)
+}
+
+.code {
+    background-color: #F3F0EE;
+    padding: 2px;
+}
