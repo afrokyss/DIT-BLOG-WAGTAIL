@@ -3,8 +3,8 @@
 from django import forms
 
 from django.utils.translation import gettext_lazy as _
-from django.core.cache import cache
-from django.core.cache.utils import make_template_fragment_key
+#from django.core.cache import cache
+#from django.core.cache.utils import make_template_fragment_key
 
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
@@ -22,6 +22,7 @@ from wagtail.admin.edit_handlers import (
     StreamFieldPanel,
     MultiFieldPanel,
     InlinePanel,
+    
 )
 from wagtail.snippets.edit_handlers import SnippetChooserPanel
 from wagtail.core.fields import StreamField
@@ -299,6 +300,11 @@ class BlogDetailPage(Page):
         null=False,
         help_text='Overwrites the default title',
     )
+    chapo = models.TextField(
+        blank=False,
+        null=True,
+        help_text="A short summary of your article",
+    )
     banner_image = models.ForeignKey(
         "wagtailimages.Image",
         blank=False,
@@ -325,6 +331,7 @@ class BlogDetailPage(Page):
 
     content_panels = Page.content_panels + [
         FieldPanel("custom_title"),
+        FieldPanel("chapo"),
         FieldPanel("tags"),
         ImageChooserPanel("banner_image"),
         MultiFieldPanel(
@@ -348,15 +355,15 @@ class BlogDetailPage(Page):
         APIField("content"),
     ]
     
-    def save(self, *args, **kwargs):
-        """Create a template fragment key.
-        Then delete the key."""
-        key = make_template_fragment_key(
-            "blog_post_preview",
-            [self.id]
-        )
-        cache.delete(key)
-        return super().save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     """Create a template fragment key.
+    #     Then delete the key."""
+    #     key = make_template_fragment_key(
+    #         "blog_post_preview",
+    #         [self.id]
+    #     )
+    #     cache.delete(key)
+    #     return super().save(*args, **kwargs)
 
 # First subclassed blog post page
 class ArticleBlogPage(BlogDetailPage):
@@ -369,6 +376,13 @@ class ArticleBlogPage(BlogDetailPage):
         blank=True,
         null=True
     )
+    
+    # article_summary=models.TextField(
+    #     blank=False,
+    #     null=False,
+    #     help_text="A short summary of your article"
+    # )
+    
     intro_image = models.ForeignKey(
         "wagtailimages.Image",
         blank=True,
@@ -380,6 +394,7 @@ class ArticleBlogPage(BlogDetailPage):
     content_panels = Page.content_panels + [
         FieldPanel("custom_title"),
         FieldPanel("subtitle"),
+        FieldPanel("chapo"),
         FieldPanel("tags"),
         ImageChooserPanel("banner_image"),
         ImageChooserPanel("intro_image"),
