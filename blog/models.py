@@ -184,6 +184,7 @@ class BlogListingPage(RoutablePageMixin, Page):
 
     content_panels = Page.content_panels + [
         FieldPanel("custom_title"),
+        
     ]
 
     def get_context(self, request, *args, **kwargs):
@@ -216,6 +217,7 @@ class BlogListingPage(RoutablePageMixin, Page):
         
         context["posts"] = posts
         context["categories"] = BlogCategory.objects.all()
+        # context["author"]=posts.author
         return context
     
     @route(r"^february-2021/$", name="february-2021")
@@ -294,6 +296,7 @@ class BlogDetailPage(Page):
     parent_page_types = ['blog.BlogListingPage']
     
     tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
+    date = models.DateField("Post date",blank=False, null=True)
     custom_title = models.CharField(
         max_length=100,
         blank=False,
@@ -312,6 +315,7 @@ class BlogDetailPage(Page):
         related_name="+",
         on_delete=models.SET_NULL,
     )
+    
     
     categories = ParentalManyToManyField("blog.BlogCategory", blank=True)
 
@@ -333,6 +337,7 @@ class BlogDetailPage(Page):
         FieldPanel("custom_title"),
         FieldPanel("chapo"),
         FieldPanel("tags"),
+        FieldPanel("date"),
         ImageChooserPanel("banner_image"),
         MultiFieldPanel(
             [
@@ -396,6 +401,7 @@ class ArticleBlogPage(BlogDetailPage):
         FieldPanel("subtitle"),
         FieldPanel("chapo"),
         FieldPanel("tags"),
+        FieldPanel("date"),
         ImageChooserPanel("banner_image"),
         ImageChooserPanel("intro_image"),
         MultiFieldPanel(
@@ -426,7 +432,9 @@ class VideoBlogPage(BlogDetailPage):
 
     content_panels = Page.content_panels + [
         FieldPanel("custom_title"),
+        FieldPanel("chapo"),
         FieldPanel("tags"),
+        FieldPanel('date'),
         ImageChooserPanel("banner_image"),
         MultiFieldPanel(
             [
