@@ -8,23 +8,59 @@
 <!-- <a href="{% routablepageurl page "latest_posts" %}">View Latest Posts Only</a> -->
    <!-- don't need it now. To activate when wz will have enough articles -->
    <br/><br/>
+   <!-- <div class ="container">
+       <div class="row">
+           <div class="col col-lg-2" align="left">
+            {% for cat in categories %}
+           
+            <a href="{% routablepageurl page "category_view" cat.slug %}">
+                <button type="button" class= "btn btn-outline-secondary" style="border:none;">
+                    <li style="display:inline">
+                        {% image cat.icon fill-32x32 style="vertical-align: middle" %}
+                    </li>    
+                    {{ cat.name }}</button>
+             {% if not forloop.last %} {% endif %}
+             
+             {% endfor %}
+            
+            </div> -->
+          
+
+       </div>
+       
+   </div><br/><br/>
+   
    <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
 			<div class="row">
 				<div class="col-md-3">
-                    {% for cat in categories %}
-        <a href="{% routablepageurl page "category_view" cat.slug %}">
-            <button type="button" class="btn btn-link">{{ cat.name }}</button>
-         {% if not forloop.last %} {% endif %}
-         {% endfor %}
+                    <aside><br /><br /><br /><br />
+                        {% for cat in categories %}
+           <ul>
+            <a href="{% routablepageurl page "category_view" cat.slug %}">
+                <button type="button" class= "btn btn-outline-secondary" style="border:none;">
+                    <li style="display:inline">
+                        {% image cat.icon fill-32x32 style="vertical-align: middle" %}
+                    </li>    
+                    {{ cat.name }}</button>
+             {% if not forloop.last %} {% endif %}
+            </ul>
+             {% endfor %}
+                    <!-- <a href="{% routablepageurl page "latest_posts" %}">'</a> -->
+                </aside>
 				</div>
 				<div class="col-md-6">
 
                     {% for post in posts %}
-          <a href=" {{ post.url }} ">
-            <h5 class="card-title" style="font-family: Helvetica Neue, sans-serif; font-size:35px"> {{ post.custom_title }} </h5>
+          <a style ="text-decoration-line:none" href=" {{ post.url }} ">
+            <h2 class="card-title" style="font-family: Helvetica Neue, sans-serif"> {{ post.custom_title }} </h2>
         </a>
+        {% if post.specific.subtitle %}
+        
+                            
+            <h4 class = "card-text" style = "font-family: Helvetica Neue, sans-serif"> {{ post.specific.subtitle }} </h4>
+            {% endif %} 
         {% image post.banner_image fill-700x500 as blog_img %}
                 <a href=" {{ post.url }} "
         <picture>
@@ -32,17 +68,15 @@
         
         </picture>
     </a>
-    <p class= "card-text"> {{ post.subtitle }} </p>
-    <!-- {% if post.specific.subtitle %}
-                                <p>{{ post.specific.subtitle }}</p>
-                            {% endif %} -->
-              
-              <p class = "card-text" style="font-family:Helvetica Neue, sans-serif; font-size:25px"> {{ post.chapo }} </p>
-              <p class = "card-text"> {{ post.content | truncatewords:50}} </p>
-              {% for iter in blog_authors.all %}
-              <p class = "card-text"> {{ iter.authors.name }} </p>
+      <h5 class = "card-text" style = "font-family:'Times New Roman', Times, serif;"> {{ post.content | truncatewords:80}} </h5>
+              {% for author in blog_authors %}
+              <p class = "card-text"> {{ author.name }} </p>
               {% endfor %}
-              <a href="{{ post.url }}" class="btn btn-primary">Lire l'article</a>
+              
+              <a href="{{ post.url }}" class="btn btn-secondary ">Lire l'article</a>
+              <i class="far fa-calendar-alt" style="padding-left:20em"> Publié le {{ post.date }}</i>
+            
+            <hr /><br />
             {% endfor %}
 				</div>
 			</div>

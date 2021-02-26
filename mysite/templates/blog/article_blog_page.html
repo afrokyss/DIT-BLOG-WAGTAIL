@@ -27,6 +27,9 @@
             {% if self.subtitle %}
                 <h3>{{ self.subtitle }}</h3>
             {% endif %}
+            {% if self.chapo %}
+            <h3> {{ self.chapo }} </h3>
+            {% endif %}
             {% if self.categories.count %}
                 <div style="padding: 0 20px 20px">
                     {% for cat in self.categories.all %}
@@ -68,8 +71,8 @@
 
     <div class="container">
         <div class="row">
-          <div class="col-lg-8 offset-lg-2"> 
-                <
+          <div class="col-lg-8 offset-lg-2" style = "font-family:'Times New Roman', Times, serif; font-size:medium"> 
+                
                 {% for block in self.content %}
                     {% include_block block %}
                 {% endfor %}

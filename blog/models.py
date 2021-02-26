@@ -140,6 +140,13 @@ class BlogCategory(models.Model):
     """Blog catgory for a snippet."""
 
     name = models.CharField(max_length=255)
+    icon = models.ForeignKey(
+        "wagtailimages.Image",
+        null=True, 
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
     slug = models.SlugField(
         verbose_name="slug",
         allow_unicode=True,
@@ -150,6 +157,8 @@ class BlogCategory(models.Model):
     panels = [
         FieldPanel("name"),
         FieldPanel("slug"),
+        ImageChooserPanel("icon"),
+        
     ]
 
     class Meta:
