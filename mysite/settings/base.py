@@ -184,6 +184,15 @@ STATICFILES_DIRS = [
 ]
 
 # Wagtail code theme and languages
+# available themes:
+
+# None: Default
+# 'coy': Coy
+# 'dark': Dark
+# 'funky': Funky
+# 'okaidia': Okaidia
+# 'solarizedlight': Solarized Light
+# 'twilight': Twilight
 
 WAGTAIL_CODE_BLOCK_THEME = None
 WAGTAIL_CODE_BLOCK_LANGUAGES = (
