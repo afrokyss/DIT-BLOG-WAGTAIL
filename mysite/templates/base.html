@@ -21,7 +21,7 @@
 
         {# Global stylesheets #}
         
-        
+        <link rel="icon" type="image/png" href="{% static 'images/Logo.png' %}"/>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
         <link rel="stylesheet" href="https://bootswatch.com/4/flatly/bootstrap.min.css" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="{% static 'css/mysite.css' %}">
@@ -33,17 +33,17 @@
 
     <body class="{% block body_class %}{% endblock %}">
         {% wagtailuserbar %}
-        {% company_logo as logo %}
-
-        <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
-            <a class="navbar-brand" href="/">{% image logo.logo fill-200x50 %}</a>
+        {% company_logo as logo %}  
+        <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light" 
+        style="background-image:url('https://dit.sn/wp-content/uploads/2020/08/1920-2.png'); background-size:cover;">
+            <a class="navbar-brand" href="/">{% image logo.logo fill-200x75 %}</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
           
             <div class="collapse navbar-collapse" id="navbarColor03">
                 
-              <ul class="navbar-nav mr-auto">
+              <ul class="navbar-nav mr-auto" style="margin-left: 7em;">
                 <!-- <li class="nav-item active">
                   <a class="nav-link" href="{{ item.link }}">Home <span class="sr-only">(current)</span></a>
                 </li> -->
@@ -52,7 +52,7 @@
                 {% for item in navigation.menu_items.all %}
                         
                             <li>
-                                <a href="{{ item.link }}" class="nav-link"{% if item.open_in_new_tab %} target="_blank"{% endif %}>{{ item.title }}</a>
+                                <a href="{{ item.link }}" class="nav-link"{% if item.open_in_new_tab %} target="_blank"{% endif %}; style="font-size:larger; color:white; margin-bottom:3em;">  {{ item.title }}  | </a>
                             </li>
                         {% endfor %}
                      <!--endcache-->
@@ -87,16 +87,18 @@
             <li class="nav-item">
                     {% if request.user.is_authenticated %}
                         Hi {{ request.user.username }},
-                        <a href="{% url 'account_logout' %}" class="nav-link d-inline">Logout?</a>
+                        <a href="{% url 'account_logout' %}" class="nav-link d-inline" style="color: white; font-size:larger">Logout?</a>
                     {% else %}
                         Hi Guest!
-                        <a href="{% url 'account_login' %}" class="nav-link d-inline">Login?</a>
+                        <a href="{% url 'account_login' %}" class="nav-link d-inline" style="color:white; font-size:larger">Login?</a>
 
                     {% endif %}
                 </li>
             </ul>
             
           </nav>
+    
+    
 
           <br/><br/><br/><br/>
 
