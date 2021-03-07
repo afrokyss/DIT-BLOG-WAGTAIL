@@ -1,6 +1,6 @@
 from django import template
 
-from ..models import Menu, CompanyLogo
+from ..models import Menu, CompanyLogo, BackgroundMenuImage
 
 register = template.Library()
 
@@ -12,3 +12,7 @@ def get_menu(slug):
 @register.simple_tag()
 def company_logo():
     return CompanyLogo.objects.first()
+
+@register.simple_tag()
+def background_image():
+    return BackgroundMenuImage.objects.first()

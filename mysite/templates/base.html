@@ -1,4 +1,4 @@
-{% load static wagtailuserbar menus_tags wagtailimages_tags %}
+{% load static wagtailuserbar menus_tags wagtailimages_tags wagtailcore_tags %}
 
 {% get_menu "main" as navigation %}
 
@@ -33,9 +33,12 @@
 
     <body class="{% block body_class %}{% endblock %}">
         {% wagtailuserbar %}
-        {% company_logo as logo %}  
-        <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light" 
-        style="background-image:url('https://dit.sn/wp-content/uploads/2020/08/1920-2.png'); background-size:cover;">
+        <!-- {% image background_image fill-900x400 as back_img %}  @todo: complete code  for pass background image for menu -->
+        {% company_logo as logo %}
+       
+         
+        <!-- <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light" style="background-image: url('{{ back_img.url }}'); background-size:cover; background-position:center center;">   @todo: complete code  for pass background image for menu --> -->
+        <nav class =" navbar navbar-expande-lg fixed-top navbar-light bg-light" style = "background-image : url('https://dit.sn/wp-content/uploads/2020/08/1920-2.png'); background-size:cover;">
             <a class="navbar-brand" href="/">{% image logo.logo fill-200x75 %}</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>

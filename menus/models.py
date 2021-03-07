@@ -81,6 +81,38 @@ class Menu(ClusterableModel):
     def __str__(self):
         return self.title
     
+    
+@register_snippet
+class BackgroundMenuImage(models.Model):
+    image_url = models.CharField(
+        max_length=255, 
+        blank=True, 
+        null=True
+        )
+    background_image = models.ForeignKey(
+        'wagtailimages.Image',
+        blank=False, null=True,
+        on_delete=models.SET_NULL,
+        related_name = "+", 
+        help_text = "Set the Background image of the menu "
+        
+    )
+    panels = [
+        MultiFieldPanel(
+            [
+            FieldPanel("image_url"),
+            ImageChooserPanel("background_image"),
+            
+        ], heading="Background image for menu"),
+       
+    ]
+    
+    class Meta:
+        verbose_name = "background image menu"
+        verbose_name_plural= "background images menu"
+     
+     
+    
 @register_snippet
 class CompanyLogo(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True)
