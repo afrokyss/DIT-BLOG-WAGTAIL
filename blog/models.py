@@ -313,7 +313,7 @@ class BlogDetailPage(Page):
         help_text='Overwrites the default title',
     )
     chapo = models.TextField(
-        blank=False,
+        blank=True,
         null=True,
         help_text="A short summary of your article",
     )
