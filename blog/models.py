@@ -206,7 +206,7 @@ class BlogListingPage(RoutablePageMixin, Page):
             tags = request.GET.get('tag')
             all_posts = all_posts.filter(tags__slug__in=[tags])
         
-        paginator = Paginator(all_posts, 2)
+        paginator = Paginator(all_posts, 6)
         # Try to get the ?page=x value
         page = request.GET.get("page")
         try:
@@ -337,6 +337,7 @@ class BlogDetailPage(Page):
             ("simple_richtext", blocks.SimpleRichtextBlock()),
             ("cards", blocks.CardBlock()),
             ("cta", blocks.CTABlock()),
+            ("quote", blocks.BlockQuoteBlock()),
         ],
         null=True,
         blank=True,

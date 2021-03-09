@@ -3,6 +3,9 @@
 from wagtail.core import blocks
 from wagtail.images.blocks import ImageChooserBlock
 
+from django.utils.safestring import mark_safe
+from django.utils.html import format_html
+
 
 class TitleAndTextBlock(blocks.StructBlock):
     """Title and text and nothing else."""
@@ -111,4 +114,17 @@ class ButtonBlock(blocks.StructBlock):
         template = "streams/button_block.html"
         icon = "placeholder"
         label = "Single Button"
-        value_class = LinkStructValue                       
+        value_class = LinkStructValue  
+        
+        
+class BlockQuoteBlock(blocks.TextBlock):
+    def render_basic(self, value, context=None):
+        if value:
+            return format_html(
+                '<blockquote>{0}</blockquote>', mark_safe(value))
+        else:
+            return ''
+
+    class Meta:
+        icon = "openquote"
+                                 
