@@ -1,10 +1,13 @@
 """Streamfields live in here."""
 
 from wagtail.core import blocks
+from wagtail.core.blocks import CharBlock
 from wagtail.images.blocks import ImageChooserBlock
+from wagtail.embeds.blocks import EmbedBlock
 
 from django.utils.safestring import mark_safe
 from django.utils.html import format_html
+from django.utils.translation import gettext_lazy as _
 
 
 class TitleAndTextBlock(blocks.StructBlock):
@@ -127,4 +130,24 @@ class BlockQuoteBlock(blocks.TextBlock):
 
     class Meta:
         icon = "openquote"
+        
+class InlineVideoBlock(blocks.StructBlock):
+    video = EmbedBlock(label=_("Video"))
+    caption = CharBlock(required=False, label=_("Caption"))
+    float = blocks.ChoiceBlock(
+        required=False,
+        choices=[('right', _("Right")), ('left', _("Left")), ('center', _("Center"))],
+        default='right',
+        label=_("Float"),
+    )
+    size = blocks.ChoiceBlock(
+        required=False,
+        choices=[('small', _("Small")), ('medium', _("Medium")), ('large', _("Large"))],
+        default='small',
+        label=_("Size"),
+    )
+
+    class Meta:
+        template = 'streams/video_block.html'
+        icon = 'media'        
                                  

@@ -16,7 +16,7 @@
             <div class="row">
                 <div class="col-md-3">
                 </div>
-                <div class="col-md-6" style="font-family:'Times New Roman', Times, serif; font-size:20px">
+                <div class="col-md-6" style="font-family:'Georgia', serif; font-size:20px;">
                     {% if self.categories.count %}
                     {% for cat in self.categories.all %}
                     <a href="?category={{ cat.slug }}">
@@ -24,45 +24,63 @@
                     {% if not forloop.last %}, {% endif %}
                     {% endfor %}
                     {% endif %}
-                    <h1 style="font-family: Helvetica Neue, sans-serif"> {% if self.custom_title %}
+                    <h1 style="font-family:'Bree Serif', serif; color:rgb(60, 60, 60)"> {% if self.custom_title %}
                         {{ self.custom_title }}
                         {% else %}
                         {{ self.title }}
                         {% endif %}
                     </h1>
                     {% if self.subtitle %}
-                    <h5>{{ self.subtitle }}</h5>
+                    <h5 style="background-color:yellowgreen">{{ self.subtitle }}</h5>
                     {% endif %}
+                <br />
                     {% for iter in self.blog_authors.all %}
-                    {% image iter.author.image fill-50x50 as img %}
-                    <img src="{{ img.url }}" class="rounded-circle" alt="{{ iter.author.name }}">
+                    {% image iter.author.image fill-40x40 as img %}
+                   <small> <img src="{{ img.url }}" class="rounded-circle" alt="{{ iter.author.name }}">
                     {% if iter.author.website %}
                     <a href="{{ iter.author.website }}">
                         {{ iter.author.name }}
                     </a>
+                
                     {% else %}
                     {{ iter.author.name }}
                     {% endif %}
                     {% endfor %}
+                    <i class="style=padding-left:10em">{{ self.date }}</i>
+                </small>
                     <br/><br/>
                     {% if self.intro_image %}
                     {% image self.intro_image fill-700x500 as intro_img %}
                     <img src="{{ intro_img.url }}" alt="{{ intro_img.alt }}">
                     {% endif %}
+                    
+                    <br /><br /><br />
                     {% if self.chapo %}
-                    <h3> {{ self.chapo }} </h3>
+                    <h4> {{ self.chapo }} </h4>
                     {% endif %}
                     {% for block in self.content %}
                     {% include_block block %}
+                    
                     {% endfor %}
+                    <hr />
+                    {# author name #}
+                    {% for iter in self.blog_authors.all %}
+                    <h5> {{ iter.author.name }} </h5>
+                    {% endfor %}
+
+
                     {# Check if there are tags #}
                     {% if page.tags.count %}
-                    <h5>Tags:</h5>
+
+                    
                     {% for tag in page.tags.all %}
                     {# Loop through all the existing tags #}
-                    <a href="/blog/?tag={{ tag.slug }}">{{ tag }}</a><br />
+                    <span class="badge rounded-pill bg-info">
+                    <a href="/blog/?tag={{ tag.slug }}" style="color:black;">{{ tag }}</a><br />
+                </span>
                     {% endfor %}
                     {% endif %}
+                
 
                 </div>
                 <div class="col-md-3">

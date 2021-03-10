@@ -35,6 +35,7 @@ from wagtail.snippets.models import register_snippet
 from wagtailcodeblock.blocks import CodeBlock 
 
 from streams import blocks
+from streams.blocks import InlineVideoBlock
 
 
 
@@ -324,6 +325,13 @@ class BlogDetailPage(Page):
         related_name="+",
         on_delete=models.SET_NULL,
     )
+    author_name = models.CharField(
+        max_length=100, 
+        blank=False, 
+        null=True,
+        help_text= "Name of the writer of the article for home page"
+        
+        )
     
     
     categories = ParentalManyToManyField("blog.BlogCategory", blank=True)
@@ -332,12 +340,13 @@ class BlogDetailPage(Page):
     content = StreamField(
         [
             ("title_and_text", blocks.TitleAndTextBlock()),
-            ("full_richtext", blocks.RichtextBlock(features=['h1', 'h2', 'h3', 'h4', 'h5', 'bold', 'italic', 'ol', 'ul', 'hr', 'link', 'image', 'code', 'blockquote'])),
+            ("full_richtext", blocks.RichtextBlock(features=['h1', 'h2', 'h3', 'h4', 'h5', 'bold', 'italic', 'ol', 'ul', 'hr', 'link', 'image', 'code','embed', 'blockquote'])),
             ("code", CodeBlock(label=_("code"))),
             ("simple_richtext", blocks.SimpleRichtextBlock()),
             ("cards", blocks.CardBlock()),
             ("cta", blocks.CTABlock()),
             ("quote", blocks.BlockQuoteBlock()),
+            ('video', InlineVideoBlock()),
         ],
         null=True,
         blank=True,
@@ -348,6 +357,7 @@ class BlogDetailPage(Page):
         FieldPanel("chapo"),
         FieldPanel("tags"),
         FieldPanel("date"),
+        FieldPanel("author_name"),
         ImageChooserPanel("banner_image"),
         MultiFieldPanel(
             [
@@ -389,7 +399,9 @@ class ArticleBlogPage(BlogDetailPage):
     subtitle = models.CharField(
         max_length=100,
         blank=True,
-        null=True
+        null=True,
+        help_text="Subject of article in CAPITALS"
+
     )
     
     # article_summary=models.TextField(
@@ -412,6 +424,7 @@ class ArticleBlogPage(BlogDetailPage):
         FieldPanel("chapo"),
         FieldPanel("tags"),
         FieldPanel("date"),
+        FieldPanel("author_name"),
         ImageChooserPanel("banner_image"),
         ImageChooserPanel("intro_image"),
         MultiFieldPanel(

@@ -1,5 +1,6 @@
 """Flexible page."""
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 from wagtail.admin.edit_handlers import FieldPanel
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
@@ -10,6 +11,8 @@ from wagtail.core.models import Page
 from wagtail.core import blocks as streamfield_blocks
 
 from streams import blocks
+from streams.blocks import InlineVideoBlock
+from wagtailcodeblock.blocks import CodeBlock
 
 
 class FlexPage(Page):
@@ -39,7 +42,11 @@ class FlexPage(Page):
                 min_length=10,
                 max_length=50,
                 template="streams/char_block.html",
-            ))
+            )),
+            ("code", CodeBlock(label=_("code"))),
+            ("quote", blocks.BlockQuoteBlock()),
+            ('video', InlineVideoBlock()),
+            
         ],
         null=True,
         blank=True,
