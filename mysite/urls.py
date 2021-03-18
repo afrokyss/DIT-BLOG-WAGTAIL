@@ -36,6 +36,11 @@ urlpatterns = [
     #    url(r'^pages/', include(wagtail_urls)),
 ]
 
+# urlpatterns += i18n_patterns(
+#     path('accounts/', include('allauth.urls')),
+#     path('accounts/', include('userauth.urls')),
+# )
+
 
 if settings.DEBUG:
     from django.conf.urls.static import static
