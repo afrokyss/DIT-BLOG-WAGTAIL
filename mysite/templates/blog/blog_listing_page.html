@@ -54,7 +54,7 @@
                     {% image post.banner_image fill-700x500 as blog_img %}
                     <a href=" {{ post.url }} ">
                         <picture>
-                            <img srcset="{{ blog_img.url }}" alt="{{ blog_img.alt }}">
+                            <img srcset="{{ blog_img.url }}" class="img-fluid" alt="{{ blog_img.alt }}">
 
                         </picture>
                     </a>

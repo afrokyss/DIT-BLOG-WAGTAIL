@@ -44,6 +44,13 @@
  }
 
 
+ img.richtext-image.full-width {
+   margin:auto;
+
+
+ }
+
+
  .block-video-center {
   display: grid;
   /* margin auto works here because embed adapts to size of container */
