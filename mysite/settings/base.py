@@ -220,9 +220,9 @@ WAGTAIL_CODE_BLOCK_LANGUAGES = (
 # JavaScript / CSS assets being served from cache (e.g. after a Wagtail upgrade).
 # See https://docs.djangoproject.com/en/3.1/ref/contrib/staticfiles/#manifeststaticfilesstorage
 
-AWS_STORAGE_BUCKET_NAME = 'ditimages'
-AWS_ACCESS_KEY_ID = 'AKIA5L7SHDZSOUNK6EZ2'
-AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'ditmag'
+AWS_ACCESS_KEY_ID = 'AKIA5L7SHDZSGSRXASIK'
+AWS_SECRET_ACCESS_KEY = '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'
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 
 
