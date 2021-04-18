@@ -16,7 +16,7 @@
             <div class="row">
                 <div class="col-md-3">
                 </div>
-                <div class="col-md-6" style="font-family:'Georgia', serif; font-size:20px;">
+                <div class="col-md-6" style="font-family:'Georgia', serif; font-size:105%;">
                     {% if self.categories.count %}
                     {% for cat in self.categories.all %}
                     <a href="?category={{ cat.slug }}">
@@ -58,10 +58,17 @@
                     {% if self.chapo %}
                     <h4> {{ self.chapo }} </h4>
                     {% endif %}
-                    {% for block in self.content %}
-                    {% include_block block %}
                     
-                    {% endfor %}
+                   {% for block in self.content %}
+                  {% include_block block %}
+                    
+                    {% endfor %} >
+
+                 
+                    
+                        
+                    
+                    
                     <hr />
                     {# author name #}
                     {% for iter in self.blog_authors.all %}
