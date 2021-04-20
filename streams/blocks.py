@@ -9,6 +9,10 @@ from django.utils.safestring import mark_safe
 from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
 
+from pygments import highlight
+from pygments.formatters import get_formatter_by_name
+from pygments.lexers import get_lexer_by_name
+
 
 class TitleAndTextBlock(blocks.StructBlock):
     """Title and text and nothing else."""
@@ -149,5 +153,53 @@ class InlineVideoBlock(blocks.StructBlock):
 
     class Meta:
         template = 'streams/video_block.html'
-        icon = 'media'        
+        icon = 'media' 
+        
+        
+
+
+class CodeBlock(blocks.StructBlock):
+    """
+    Code Highlighting Block
+    """
+    LANGUAGE_CHOICES = (
+        ('python', 'Python'),
+        ('bash', 'Bash/Shell'),
+        ('html', 'HTML'),
+        ('css', 'CSS'),
+        ('scss', 'SCSS'),
+        ('json', 'JSON'),
+    )
+
+    STYLE_CHOICES = (
+        ('syntax', 'syntax'),
+        ('emacs', 'emacs'),
+        ('monokai', 'monokai'),
+        ('vim', 'vim'),
+        ('xcode', 'xcode'),
+    )
+
+    language = blocks.ChoiceBlock(choices=LANGUAGE_CHOICES)
+    style = blocks.ChoiceBlock(choices=STYLE_CHOICES, default='xcode')
+    code = blocks.TextBlock()
+
+    def render(self, value, context=None):
+        src = value['code'].strip('\n')
+        lang = value['language']
+        lexer = get_lexer_by_name(lang)
+        #css_classes = ['code', value['style']]
+
+        formatter = get_formatter_by_name(
+            'html',
+            linenos=None,
+            #cssclass=' '.join(css_classes),
+            style='xcode',
+            #cssclass = 'codehilite',
+            noclasses=False,
+        )
+        return mark_safe(highlight(src, lexer, formatter))
+
+    class Meta:
+        icon = 'code'
+                 
                                  

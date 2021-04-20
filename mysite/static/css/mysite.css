@@ -220,6 +220,12 @@
    text-decoration: none;
  }
  
+ code {
+  background-color: #0e0601;
+  padding: 2px;
+}
+
+
  pre,
  code,
  kbd,

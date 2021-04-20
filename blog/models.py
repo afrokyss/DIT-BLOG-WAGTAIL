@@ -32,10 +32,10 @@ from wagtail.images.api.fields import ImageRenditionField
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 
 from wagtail.snippets.models import register_snippet
-from wagtailcodeblock.blocks import CodeBlock 
+#from wagtailcodeblock.blocks import CodeBlock 
 
 from streams import blocks
-from streams.blocks import InlineVideoBlock
+from streams.blocks import InlineVideoBlock, CodeBlock
 
 
 
@@ -341,7 +341,7 @@ class BlogDetailPage(Page):
         [
             ("title_and_text", blocks.TitleAndTextBlock()),
             ("full_richtext", blocks.RichtextBlock(features=['h1', 'h2', 'h3', 'h4', 'h5', 'bold', 'italic', 'ol', 'ul', 'hr', 'link', 'image', 'code','embed', 'blockquote'])),
-            ("code", CodeBlock(label=_("code"))),
+            ("code", CodeBlock(label=_("Code"))),
             ("simple_richtext", blocks.SimpleRichtextBlock()),
             ("cards", blocks.CardBlock()),
             ("cta", blocks.CTABlock()),
