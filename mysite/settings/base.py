@@ -56,7 +56,9 @@ INSTALLED_APPS = [
     'wagtail.admin',
     'wagtail.core',
     'wagtail.api.v2',
-    #'wagtailcodeblock', 
+    'wagtailcodeblock',
+    'wagtailmarkdown',
+    'wagtail_social_share', 
 
     'modelcluster',
     'taggit',
@@ -168,8 +170,10 @@ LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
+WAGTAIL_I18N_ENABLED =True
+USE_L10N=True
 
-LANGUAGES = [
+WAGTAIL_CONTENT_LANGUAGES = LANGUAGES = [
     ('en', 'English'),
     ('fr', 'Français'),
     ('es', 'Spanish'),
@@ -203,18 +207,18 @@ STATICFILES_DIRS = [
 # 'solarizedlight': Solarized Light
 # 'twilight': Twilight
 
-# WAGTAIL_CODE_BLOCK_THEME = None
-# WAGTAIL_CODE_BLOCK_LANGUAGES = (
-#     ('bash', 'Bash/Shell'),
-#     ('css', 'CSS'),
-#     ('diff', 'diff'),
-#     ('html', 'HTML'),
-#     ('javascript', 'Javascript'),
-#     ('json', 'JSON'),
-#     ('python', 'Python'),
-#     ('scss', 'SCSS'),
-#     ('yaml', 'YAML'),
-# )
+WAGTAIL_CODE_BLOCK_THEME = None
+WAGTAIL_CODE_BLOCK_LANGUAGES = (
+    ('bash', 'Bash/Shell'),
+    ('css', 'CSS'),
+    ('diff', 'diff'),
+    ('html', 'HTML'),
+    ('javascript', 'Javascript'),
+    ('json', 'JSON'),
+    ('python', 'Python'),
+    ('scss', 'SCSS'),
+    ('yaml', 'YAML'),
+)
 
 # ManifestStaticFilesStorage is recommended in production, to prevent outdated
 # JavaScript / CSS assets being served from cache (e.g. after a Wagtail upgrade).

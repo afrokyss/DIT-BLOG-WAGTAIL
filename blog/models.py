@@ -32,10 +32,10 @@ from wagtail.images.api.fields import ImageRenditionField
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 
 from wagtail.snippets.models import register_snippet
-#from wagtailcodeblock.blocks import CodeBlock 
+from wagtailcodeblock.blocks import CodeBlock 
 
 from streams import blocks
-from streams.blocks import InlineVideoBlock, CodeBlock
+from streams.blocks import InlineVideoBlock, MarkDownBlock
 
 
 
@@ -77,6 +77,10 @@ class BlogAuthorsOrderable(Orderable):
     def author_image(self):
         return self.author.image
     
+    # @property
+    # def author_biographie(self):
+    #     return self.author.biographie
+    
     
 
     api_fields = [
@@ -92,7 +96,8 @@ class BlogAuthorsOrderable(Orderable):
                 'fill-200x250',
                 source="author_image"
             )
-        ),   
+        ),
+        # APIField("author_biographie") ,  
     ]
 
 
@@ -108,14 +113,16 @@ class BlogAuthor(models.Model):
         blank=False,
         related_name="+",
     )
+    # biographie = models.CharField(max_length=255),
 
     panels = [
         MultiFieldPanel(
             [
                 FieldPanel("name"),
                 ImageChooserPanel("image"),
+                # FieldPanel('biographie'),
             ],
-            heading="Name and Image",
+            heading="Name and Image ",
         ),
         MultiFieldPanel(
             [
@@ -347,6 +354,7 @@ class BlogDetailPage(Page):
             ("cta", blocks.CTABlock()),
             ("quote", blocks.BlockQuoteBlock()),
             ('video', InlineVideoBlock()),
+            ("markdown", MarkDownBlock(icon="placeholder")),
         ],
         null=True,
         blank=True,

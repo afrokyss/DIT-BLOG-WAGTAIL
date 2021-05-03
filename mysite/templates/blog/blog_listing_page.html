@@ -35,6 +35,22 @@
         <div class="col-md-12">
             <div class="row">
                 <div class="col-md-3">
+                    {% for cat in categories %}
+                        
+                        <ul>
+                           
+                            <a href="{% routablepageurl page "category_view" cat.slug %}">
+                                <button type="button" class="btn btn-outline-secondary">
+                                    <li style="display:inline">
+                                        <!-- {% image cat.icon fill-32x32 style="vertical-align: middle" %} -->
+                                    </li>
+                                    {{ cat.name }}
+                                </button>
+
+                                {% if not forloop.last %} {% endif %}
+                            </a>
+                        </ul>
+                        {% endfor %}
 
                 </div>
                 <div class="col-md-6">
@@ -74,36 +90,11 @@
 
                 
                 
-                <br /><br /><br /><br /><br /><br /><br />
+                
                 <hr style="text-align:left ; margin-left:8em">
                 <div class="col-md-3">
                     
-                    
-                    <aside style="padding-left:4em">
-                        
-                        
-                       
-                        
-                       
-                        {% for cat in categories %}
-                        
-                        <ul>
-                           
-                            <a href="{% routablepageurl page "category_view" cat.slug %}">
-                                <button type="button" class="btn btn-outline-secondary">
-                                    <li style="display:inline">
-                                        <!-- {% image cat.icon fill-32x32 style="vertical-align: middle" %} -->
-                                    </li>
-                                    {{ cat.name }}
-                                </button>
-
-                                {% if not forloop.last %} {% endif %}
-                            </a>
-                        </ul>
-                        {% endfor %}
-                        <!-- <a href="{% routablepageurl page "latest_posts" %}">'</a> -->
-                    </aside>
-
+        
 
                 </div>
 

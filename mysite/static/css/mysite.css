@@ -220,9 +220,10 @@
    text-decoration: none;
  }
  
- code {
-  background-color: #0e0601;
+code {
+  background-color: #a8490d;
   padding: 2px;
+  font-size:small;
 }
 
 
