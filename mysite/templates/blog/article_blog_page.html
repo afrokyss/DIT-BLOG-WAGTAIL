@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% load wagtailimages_tags wagtailcore_tags static %}
+{% load wagtailimages_tags wagtailcore_tags static social_share %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static "css/code_theme.css" %}" />
@@ -52,6 +52,9 @@
                     {% endfor %}
                     <i class="style=padding-left:10em">{{ self.date }}</i>
                 </small>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=http://dit.sn/">
+                    <i class="fab fa-facebook-f"></i>
+                    </a>
                     <br/><br/>
                     {% if self.intro_image %}
                     {% image self.intro_image fill-700x500 as intro_img %}
