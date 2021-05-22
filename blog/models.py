@@ -33,9 +33,11 @@ from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 
 from wagtail.snippets.models import register_snippet
 from wagtailcodeblock.blocks import CodeBlock 
+from wagtail.images.blocks import ImageChooserBlock
 
 from streams import blocks
-from streams.blocks import InlineVideoBlock, MarkDownBlock
+from streams.blocks import InlineVideoBlock, MarkDownBlock, ImageBlock
+
 
 
 
@@ -355,6 +357,8 @@ class BlogDetailPage(Page):
             ("quote", blocks.BlockQuoteBlock()),
             ('video', InlineVideoBlock()),
             ("markdown", MarkDownBlock(icon="placeholder")),
+            ("picture", ImageChooserBlock(icon="photo")),
+            ("photo", blocks.ImageBlock(icon="photo", label="photo",))
         ],
         null=True,
         blank=True,

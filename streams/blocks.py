@@ -209,6 +209,14 @@ class MarkDownBlock(MarkdownBlock):
     h2 = CharBlock()
     
     paragrah = RichtextBlock()
-    markdown = MarkdownBlock(icon = "placeholder")       
-                 
-                                 
+    markdown = MarkdownBlock(icon = "placeholder") 
+    
+
+class ImageBlock(blocks.StructBlock):
+    photo = ImageChooserBlock(required=False)
+    caption = blocks.CharBlock(required=False, max_length=200, help_text="Caption and author of photography @Copyright")
+         
+    class Meta:
+        template = 'streams/image_block.html'
+        icon='image' 
+        label = "Image"                               

@@ -1,0 +1,25 @@
+
+{% load wagtailimages_tags %}
+
+
+
+<div class="card">
+
+    {% if self.photo %}
+    {% image self.photo fill-700x500 as img %}
+
+    {{ self.img  }}
+   
+    
+    {% endif %}
+    <img src="{{ img.url }}" alt="{{ img.alt }}" class="card-img-top" />
+    
+      <p class="card-text">{{ self.caption }}</p>
+
+      
+    
+  </div>
+
+  <hr />
+
+  
