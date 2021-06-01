@@ -33,6 +33,7 @@
                         {% else %}
                         {{ self.title }}
                         {% endif %}
+                        
                     </h1>
                     {% if self.subtitle %}
                     <h5 style="background-color:yellowgreen">{{ self.subtitle }}</h5>
@@ -52,8 +53,11 @@
                     {% endfor %}
                     <i class="style=padding-left:10em">{{ self.date }}</i>
                 </small>
-                <a href="https://www.facebook.com/sharer/sharer.php?u=http://dit.sn/">
-                    <i class="fab fa-facebook-f"></i>
+                {% post_to_facebook object_or_url "fab fa-facebook-f" %}
+                
+                <div class="sharethis-inline-share-buttons"></div>
+
+
                     </a>
                     <br/><br/>
                     {% if self.intro_image %}
