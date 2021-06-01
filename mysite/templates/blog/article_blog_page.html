@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% load wagtailimages_tags wagtailcore_tags static %}
+{% load wagtailimages_tags wagtailcore_tags static social_share %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static "css/code_theme.css" %}" />
@@ -33,6 +33,7 @@
                         {% else %}
                         {{ self.title }}
                         {% endif %}
+                        
                     </h1>
                     {% if self.subtitle %}
                     <h5 style="background-color:yellowgreen">{{ self.subtitle }}</h5>
@@ -52,6 +53,10 @@
                     {% endfor %}
                     <i class="style=padding-left:10em">{{ self.date }}</i>
                 </small>
+               
+
+
+                    </a>
                     <br/><br/>
                     {% if self.intro_image %}
                     {% image self.intro_image fill-700x500 as intro_img %}
@@ -67,6 +72,7 @@
                   {% include_block block %}
                     
                     {% endfor %} 
+                   
 
                  
                     
