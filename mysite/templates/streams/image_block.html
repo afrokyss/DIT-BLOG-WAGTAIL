@@ -3,23 +3,25 @@
 
 
 
-<div class="card">
+<div class="card" style="border:none;">
 
     {% if self.photo %}
-    {% image self.photo fill-700x500 as img %}
+    {% image self.photo fill-700x450 as img %}
 
     {{ self.img  }}
    
     
     {% endif %}
-    <img src="{{ img.url }}" alt="{{ img.alt }}" class="card-img-top" />
+    <img src="{{ img.url }}" alt="{{ img.alt }}" class="card-img-top"/>
     
-      <p class="card-text">{{ self.caption }}</p>
+      <p class="card-text" style ="color:grey; padding-top:1em;">{{ self.caption }}</p>
 
       
     
   </div>
 
   <hr />
+
+  
 
   

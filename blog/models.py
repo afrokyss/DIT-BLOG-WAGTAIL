@@ -34,9 +34,10 @@ from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 from wagtail.snippets.models import register_snippet
 from wagtailcodeblock.blocks import CodeBlock 
 from wagtail.images.blocks import ImageChooserBlock
+#from wagtail_blocks.blocks import  ChartBlock, MapBlock
 
 from streams import blocks
-from streams.blocks import InlineVideoBlock, MarkDownBlock, ImageBlock
+from streams.blocks import InlineVideoBlock, MarkDownBlock, ImageBlock, RawTextBlock, BlockQuoteBlock
 
 
 
@@ -76,18 +77,21 @@ class BlogAuthorsOrderable(Orderable):
         return self.author.website
     
     @property
+    def author_biographie(self):
+        return self.author.biographie
+    
+    @property
     def author_image(self):
         return self.author.image
     
-    # @property
-    # def author_biographie(self):
-    #     return self.author.biographie
+    
     
     
 
     api_fields = [
         APIField("author_name"),
         APIField("author_website"),
+        APIField("author_biographie"),
         # This is using a custom django rest framework serializer
         APIField("author_image", serializer=ImageSerializedField()), 
         # The below APIField is using a Wagtail-built DRF Serializer that supports
@@ -99,7 +103,7 @@ class BlogAuthorsOrderable(Orderable):
                 source="author_image"
             )
         ),
-        # APIField("author_biographie") ,  
+         
     ]
 
 
@@ -108,6 +112,7 @@ class BlogAuthor(models.Model):
 
     name = models.CharField(max_length=100)
     website = models.URLField(blank=True, null=True)
+    biographie = models.TextField(max_length=255, null=True)
     image = models.ForeignKey(
         "wagtailimages.Image",
         on_delete=models.SET_NULL,
@@ -115,16 +120,16 @@ class BlogAuthor(models.Model):
         blank=False,
         related_name="+",
     )
-    # biographie = models.CharField(max_length=255),
+    
 
     panels = [
         MultiFieldPanel(
             [
                 FieldPanel("name"),
                 ImageChooserPanel("image"),
-                # FieldPanel('biographie'),
+                FieldPanel('biographie'),
             ],
-            heading="Name and Image ",
+            heading="Name, Image and Biographie ",
         ),
         MultiFieldPanel(
             [
@@ -349,7 +354,7 @@ class BlogDetailPage(Page):
     content = StreamField(
         [
             ("title_and_text", blocks.TitleAndTextBlock()),
-            ("full_richtext", blocks.RichtextBlock(features=['h1', 'h2', 'h3', 'h4', 'h5', 'bold', 'italic', 'ol', 'ul', 'hr', 'link', 'image', 'code','embed', 'blockquote'])),
+            ("full_richtext", blocks.RichtextBlock(features=['h1', 'h2', 'h3', 'h4', 'h5', 'bold', 'italic', 'ol', 'ul', 'hr', 'link', 'image', 'code','embed', 'blockquote', 'superscript', 'subscript', 'strikethrough'])),
             ("code", CodeBlock(label=_("Code"))),
             ("simple_richtext", blocks.SimpleRichtextBlock()),
             ("cards", blocks.CardBlock()),
@@ -358,7 +363,10 @@ class BlogDetailPage(Page):
             ('video', InlineVideoBlock()),
             ("markdown", MarkDownBlock(icon="placeholder")),
             ("picture", ImageChooserBlock(icon="photo")),
-            ("photo", blocks.ImageBlock(icon="photo", label="photo",))
+            ("photo", blocks.ImageBlock(icon="photo", label="photo",)),
+            ("RawTextBlock",RawTextBlock(label = "Raw Html", icon= "code")),
+            #("chart", ChartBlock()),
+            #("map", MapBlock()),
         ],
         null=True,
         blank=True,

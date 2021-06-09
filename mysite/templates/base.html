@@ -45,7 +45,7 @@
          
         <!--@todo: complete code  for pass background image for menu --> 
         <nav class="navbar sticky-top navbar-expand-lg navbar-dark" style="background-color:rgb(21, 72, 84);">
-            <a class="navbar-brand" href="/"> {% image logo.logo fill-140x50 %} </a>
+            <a class="navbar-brand" href="/blog"> {% image logo.logo fill-140x50 %} </a>
         
 
 
@@ -176,7 +176,7 @@
         {# Global javascript #}
 
         <!-- Go to www.addthis.com/dashboard to customize your tools -->
-        
+        <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
         <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-60b67a2cfe45e250"></script>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -186,6 +186,7 @@
         <!--<script src="{% static 'js/prism.js' %}"></script>-->
         
         {% block extra_js %}
+        <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
             {# Override this in templates to add extra javascript #}
         {% endblock %}
     </body>

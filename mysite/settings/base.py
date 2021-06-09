@@ -58,7 +58,10 @@ INSTALLED_APPS = [
     'wagtail.api.v2',
     'wagtailcodeblock',
     'wagtailmarkdown',
-    #'wagtail_social_share', 
+    #'wagtail_social_share',
+    'wagtailfontawesome',
+    'wagtail_blocks', 
+    
 
     'modelcluster',
     'taggit',

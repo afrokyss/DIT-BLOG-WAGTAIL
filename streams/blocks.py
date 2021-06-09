@@ -1,7 +1,7 @@
 """Streamfields live in here."""
 
 from wagtail.core import blocks
-from wagtail.core.blocks import CharBlock, StreamBlock
+from wagtail.core.blocks import CharBlock, StreamBlock, RawHTMLBlock
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.embeds.blocks import EmbedBlock
 from wagtailmarkdown.blocks import MarkdownBlock
@@ -134,6 +134,7 @@ class BlockQuoteBlock(blocks.TextBlock):
             return ''
 
     class Meta:
+        template = 'quote_block.html'
         icon = "openquote"
         
 class InlineVideoBlock(blocks.StructBlock):
@@ -219,4 +220,15 @@ class ImageBlock(blocks.StructBlock):
     class Meta:
         template = 'streams/image_block.html'
         icon='image' 
-        label = "Image"                               
+        label = "Image" 
+        
+
+class RawTextBlock(RawHTMLBlock):
+    class meta : 
+        template = 'streams/raw.html' 
+        icon = 'code'
+        label='Raw Html' 
+        
+        
+
+                               

@@ -6,7 +6,10 @@
 <link rel="stylesheet" href="{% static "css/code_theme.css" %}" />
 {% endblock %}
 
+
+
 {% block content %}
+
 {% image self.banner_image fill-1200x300 as banner %}
 
 
@@ -19,8 +22,9 @@
         <div class="col-md-12">
             <div class="row">
                 <div class="col-md-3">
+                
                 </div>
-                <div class="col-md-6" style="font-family:'Josefin Slab', serif; font-size:120%;">
+                <div class="col-md-6" style="font-family:'Josefin Slab', serif; font-size:100%; text-align:left;">
                     {% if self.categories.count %}
                     {% for cat in self.categories.all %}
                     <a href="?category={{ cat.slug }}">
@@ -28,7 +32,7 @@
                     {% if not forloop.last %}, {% endif %}
                     {% endfor %}
                     {% endif %}
-                    <h1 style="font-family:'Bree Serif', serif; color:rgb(60, 60, 60)"> {% if self.custom_title %}
+                    <h1 style="font-family:'Bree Serif', serif; color:rgb(4, 51, 4)"> {% if self.custom_title %}
                         {{ self.custom_title }}
                         {% else %}
                         {{ self.title }}
@@ -63,9 +67,9 @@
                     <img src="{{ intro_img.url }}" class="img-fluid" alt="{{ intro_img.alt }}">
                     {% endif %}
                     
-                    <br /><br /><br />
+                    <br /><br />
                     {% if self.chapo %}
-                    <h4> {{ self.chapo }} </h4>
+                    <h4 style="font-family:'Bree Serif', serif; color:rgb(4, 51, 4)"> {{ self.chapo }} </h4>
                     {% endif %}
                     
                    {% for block in self.content %}
@@ -73,12 +77,7 @@
                     
                     {% endfor %} 
                    
-
-                 
-                    
-                        
-                    
-                    
+   
                     <hr />
                     {# author name #}
                     {% for iter in self.blog_authors.all %}
@@ -86,6 +85,29 @@
                    <small> <img src="{{ img.url }}" class="rounded-circle" alt="{{ iter.author.name }}">
                     <h5> {{ iter.author.name }} </h5>
                     {% endfor %}
+
+
+
+                      {% for iter in self.blog_authors.all %}
+                      {% if iter.author.biographie %}
+
+                      <div class="card" style="width: 18rem;">
+                        <div class="card-body" style="background-color: beige;">
+                          <h5 class="card-title">biographie de l'auteur</h5>
+                         
+                          <p class="card-text">{{ iter.author.biographie }}</p>
+                          {% else %}
+                          {{ iter.author.biographie }}
+                          {% endif %}
+                          {% endfor %}
+
+                          <a href="#" class="card-link">Card link</a>
+                          <a href="#" class="card-link">Another link</a>
+                         
+                          
+                        </div>
+                      </div> 
+                       
 
 
                     {# Check if there are tags #}

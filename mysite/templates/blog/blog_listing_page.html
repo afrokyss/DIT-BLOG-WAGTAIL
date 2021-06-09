@@ -7,7 +7,7 @@
 
 <!-- <a href="{% routablepageurl page "latest_posts" %}">View Latest Posts Only</a> -->
 <!-- don't need it now. To activate when wz will have enough articles -->
-<br /><br />
+
 <!-- <div class ="container">
        <div class="row">
            <div class="col col-lg-2" align="left">
@@ -26,34 +26,29 @@
             </div> -->
 
 
-</div>
-
-</div><br /><br />
-
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="row">
-                <div class="col-md-3">
-                    {% for cat in categories %}
-                        
-                        <ul>
-                           
-                            <a href="{% routablepageurl page "category_view" cat.slug %}">
-                                <button type="button" class="btn btn-outline-secondary">
-                                    <li style="display:inline">
-                                        <!-- {% image cat.icon fill-32x32 style="vertical-align: middle" %} -->
-                                    </li>
-                                    {{ cat.name }}
-                                </button>
-
-                                {% if not forloop.last %} {% endif %}
-                            </a>
-                        </ul>
-                        {% endfor %}
-
+    <div class="row ">
+         <div class="row">
+                <div class="col-md-3 ">     
                 </div>
                 <div class="col-md-6">
+
+                    <div class="row col-md-10">
+                        {% for cat in categories %}
+                        <a href="{% routablepageurl page "category_view" cat.slug %}">
+                            <button type="button" class="btn btn-outline-secondary">
+                                <li style="display:inline">
+                                    <!-- {% image cat.icon fill-32x32 style="vertical-align: middle" %} -->
+                                </li>
+                                {{ cat.name }}
+                            </button>
+
+                            {% if not forloop.last %} {% endif %}
+                            <hr />
+                        </a>
+
+                        {% endfor %}
+                    </div>
 
                     {% for post in posts %}
                     {% if post.specific.subtitle %}
@@ -63,43 +58,36 @@
                     {% endif %}
 
                     <a style="text-decoration-line:none" href=" {{ post.url }} ">
-                        <h2 class="card-title" style="font-family:'Bree Serif', serif; color:rgb(5, 73, 22); text-decoration:none;">
+                        <h2 class="card-title"
+                            style="font-family:'Bree Serif', serif; color:rgb(5, 73, 22); text-decoration:none;">
                             {{ post.custom_title }} </h2>
                     </a>
 
-                    {% image post.banner_image fill-700x500 as blog_img %}
+                    {% image post.banner_image fill-700x400 as blog_img %}
                     <a href=" {{ post.url }} ">
                         <picture>
                             <img srcset="{{ blog_img.url }}" class="img-fluid" alt="{{ blog_img.alt }}">
 
                         </picture>
                     </a>
-                    <h5 class="card-text" style="font-family:'Times New Roman', Times, serif;">
+                    <br /><br />
+                    <h5 class="card-text" style="font-family:'Times New Roman', Times, serif; font-size:100%;">
                         {{ post.content | truncatewords:50 }} </h5>
                     <!-- {% for author in blog_authors %} -->
                     <!-- <p class="card-text"> {{ author.name }} </p> -->
                     <!-- {% endfor %} -->
 
                     <a href="{{ post.url }}" class="btn btn-secondary ">Lire l'article</a>
-                    <i class="far fa-edit" style="padding-left:20em"> Par {{ post.author_name }}; {{ post.date }}</i>
+                    <i class="far fa-edit" style="padding-left:20em"> Par {{ post.author_name }};
+                        {{ post.date }}</i>
 
                     <hr /><br />
                     {% endfor %}
                 </div>
-                
-
-                
-                
-                
                 <hr style="text-align:left ; margin-left:8em">
-                <div class="col-md-3">
-                    
         
-
                 </div>
-
             </div>
-        </div>
     </div>
 </div>
 
