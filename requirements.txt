@@ -26,7 +26,7 @@ django-modelcluster==5.1
 django-taggit==1.4.0
 django-treebeard==4.5.1
 djangorestframework==3.12.4
-dlib==19.22.0
+
 django-social-share==2.2.1
 django-storages==1.11.1
 django-debug-toolbar==3.2.1
