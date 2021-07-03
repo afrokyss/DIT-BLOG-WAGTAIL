@@ -2,6 +2,6 @@
 .DS_Store
 *.swp
 /venv/
-/static/
+#/static/
 /media/
 .env

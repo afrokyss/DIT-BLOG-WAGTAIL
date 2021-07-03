@@ -269,7 +269,7 @@ ACCOUNT_LOGOUT_REDIRECT_URL = '/login/'
 ACCOUNT_PRESERVE_USERNAME_CASING = False
 ACCOUNT_SESSION_REMEMBER = True
 ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
-ACCOUNT_USERNAME_BLACKLIST = ["kalob", "admin", "god"]
+ACCOUNT_USERNAME_BLACKLIST = ["heric", "admin", "god"]
 ACCOUNT_USERNAME_MIN_LENGTH = 2
 
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
