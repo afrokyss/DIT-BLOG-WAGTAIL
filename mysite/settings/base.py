@@ -60,7 +60,8 @@ INSTALLED_APPS = [
     'wagtailmarkdown',
     #'wagtail_social_share',
     'wagtailfontawesome',
-    'wagtail_blocks', 
+    'wagtail_blocks',
+    'readingtime', 
     
 
     'modelcluster',

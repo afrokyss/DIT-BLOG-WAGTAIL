@@ -24,7 +24,7 @@
                 <div class="col-md-3">
                 
                 </div>
-                <div class="col-md-6" style="font-family: 'Cormorant Garamond', serif; font-size:100%; text-align:left;">
+                <div class="col-sm-6" style="font-family: 'Merriweather', serif; font-size:100%; text-align:left;">
                     {% if self.categories.count %}
                     {% for cat in self.categories.all %}
                     <a href="?category={{ cat.slug }}">
@@ -32,13 +32,13 @@
                     {% if not forloop.last %}, {% endif %}
                     {% endfor %}
                     {% endif %}
-                    <h1 style="font-family:'Bree Serif', serif; color:rgb(4, 51, 4)"> {% if self.custom_title %}
+                    <h2 style="font-family: 'Merriweather', serif; color:rgb(4, 51, 4); font-weight:bold"> {% if self.custom_title %}
                         {{ self.custom_title }}
                         {% else %}
                         {{ self.title }}
                         {% endif %}
                         
-                    </h1>
+                    </h2>
                     {% if self.subtitle %}
                     <h5 style="background-color:yellowgreen">{{ self.subtitle }}</h5>
                     {% endif %}
@@ -57,6 +57,8 @@
                     {% endfor %}
                     <i class="style=padding-left:10em">{{ self.date }}</i>
                 </small>
+              
+                <div class="sharethis-inline-share-buttons"></div>
                
 
 
@@ -69,10 +71,10 @@
                     
                     <br /><br />
                     {% if self.chapo %}
-                    <h3 style="font-family:'Bree Serif', serif; color:rgb(4, 51, 4);"> {{ self.chapo }} </h3>
+                    <h4 style="font-family: 'Merriweather', serif; color:rgb(4, 51, 4); font:bold 24px/1;"> {{ self.chapo }} </h4>
                     {% endif %}
 
-                    <br /><br />
+                    <br />
                     
                    {% for block in self.content %}
                   {% include_block block %}
@@ -81,13 +83,15 @@
                    
    
                     <hr />
+
+                    <div class="sharethis-inline-share-buttons"></div>
                     {# author name #}
                     {% for iter in self.blog_authors.all %}
                     {% image iter.author.image fill-40x40 as img %}
                    <small> <img src="{{ img.url }}" class="rounded-circle" alt="{{ iter.author.name }}">
                     <h5> {{ iter.author.name }} </h5>
                     {% endfor %}
-
+                    
 
 
                       {% for iter in self.blog_authors.all %}

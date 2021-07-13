@@ -37,8 +37,8 @@ from wagtail.images.blocks import ImageChooserBlock
 #from wagtail_blocks.blocks import  ChartBlock, MapBlock
 
 from streams import blocks
-from streams.blocks import InlineVideoBlock, MarkDownBlock, ImageBlock, RawTextBlock, BlockQuoteBlock
-
+from streams.blocks import InlineVideoBlock, MarkDownBlock, ImageBlock, RawTextBlock, BlockQuoteBlock, ExternalLinkWithChildrenBlock, PageLinkWithChildrenBlock
+ 
 
 
 
@@ -495,4 +495,40 @@ class VideoBlogPage(BlogDetailPage):
         StreamFieldPanel("content"),
     ]     
     
+# NavBar model  
+class Navbar(models.Model):
+    """
+    Model that represents website navigation bars.  Can be modified through the
+    snippets UI. 
+    """
+    name = models.CharField(max_length=255)
+    menu_items = StreamField([
+        ('external_link', ExternalLinkWithChildrenBlock()),
+        ('page_link', PageLinkWithChildrenBlock()),
+        ],)
+
+    panels = [
+        FieldPanel('name'),
+        StreamFieldPanel('menu_items')
+    ]
+
+    def __str__(self):
+        return self.name
+
+register_snippet(Navbar)
+
+
+class PageWithNavbar(Page):
+    navbar = models.ForeignKey(
+        Navbar,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+    )
+
+    content_panels=[
+        FieldPanel('title'),
+        SnippetChooserPanel('navbar')
+    ]
 

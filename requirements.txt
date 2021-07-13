@@ -68,6 +68,7 @@ Willow==1.4
 wagtail-blocks==0.7.2 
 wagtailfontawesome==1.2.1
 wagtail-django-simple-captcha==1.0
+wagtail-readingtime==1.4.1
 
 
 
