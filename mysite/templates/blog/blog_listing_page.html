@@ -59,9 +59,9 @@
                     {% endif %}
 
                     <a style="text-decoration-line:none" href=" {{ post.url }} ">
-                        <h2 class="card-title"
-                            style="font-family:'Bree Serif', serif; color:rgb(5, 73, 22); text-decoration:none;">
-                            {{ post.custom_title }} </h2>
+                        <h4 class="card-title"
+                            style="font-family: 'Merriweather', serif; color:rgb(4, 51, 4); font-weight:bold">
+                            {{ post.custom_title | upper }} </h4>
                     </a>
 
                     {% image post.banner_image fill-700x400 as blog_img %}
@@ -72,8 +72,8 @@
                         </picture>
                     </a>
                     <br /><br />
-                    <h5 class="card-text" style="font-family:'Times New Roman', Times, serif; font-size:100%;">
-                        {{ post.content | truncatewords:50 }} </h5>
+                    <h6 class="card-text" style="font-family: 'Merriweather', serif; color:rgb(4, 51, 4)">
+                        {{ post.content | truncatewords:50 }} </h6>
                     <!-- {% for author in blog_authors %} -->
                     <!-- <p class="card-text"> {{ author.name }} </p> -->
                     <!-- {% endfor %} -->
@@ -89,7 +89,7 @@
         
                 </div>
             </div>
-    </div>
+    
 </div>
 
 

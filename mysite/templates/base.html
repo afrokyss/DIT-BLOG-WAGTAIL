@@ -52,60 +52,46 @@
     {% company_logo as logo %}
 
 
+
+
+
     <!--@todo: complete code  for pass background image for menu -->
     <nav class="navbar sticky-top navbar-expand-lg navbar-light border border-1"
         style="background-color:rgb(255, 255, 255); height:150px; color:blue">
         <a class="navbar-brand" href="/blog"> {% image logo.logo fill-280x80 %} </a>
-
-
-
-
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03"
-            aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-            {% for item in navigation.menu_items.all %}
-
-
-            <a href="{{ item.link }}" class="nav-link" {% if item.open_in_new_tab %} target="_blank"
-                {% endif %}>{{ item.title }}</a>
-
-            {% endfor %}
+        <button class="navbar-toggler hidden-sm-up float-xs-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-
-
         </button>
 
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-        <div class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/blog">
-                        <span class="sr-only">(current)</span>
-                    </a>
 
-
-                    <!--cache 604800 navigation %}-->
-        
-
-
-
-            <ul class="navbar-nav col-md-6">
-                {% for item in navigation.menu_items.all %}
-                <li class="nav-item">
+                <li class="nav-item" style="padding-left: 500px;">
                     
-                    <a href="{{ item.link }}" class="nav-link" {% if item.open_in_new_tab %} target="_blank"
-                        {% endif %}>{{ item.title }}</a>
-
+                    
+                        {% for item in navigation.menu_items.all %}
+                        <a href="{{ item.link }}" class="nav-link" {% if item.open_in_new_tab %} target="_blank"
+                            {% endif %}>{{ item.title }}</a>
                     
                 </li>
-
                 {% endfor %}
+            
+
 
             </ul>
-        </ul>
 
 
+        </div>
+        
 
-            <!-- <ul class="navbar-nav">       
+    </nav>
+
+    <!--cache 604800 navigation %}-->
+
+
+    <!-- <ul class="navbar-nav">       
             <li class="nav-item" style="color: white">
                     {% if request.user.is_authenticated %}
                         Hi {{ request.user.username }},
@@ -117,16 +103,19 @@
                     {% endif %}
                 </li>
         </ul> -->
-        </div>
-
-    </nav>
 
 
 
-    <br /><br /><br /><br />
 
 
     {% block content %}{% endblock %}
+    <br /><br /><br /><br />
+
+
+      
+
+    
+
     <br /><br /> <br />
 
     <!--cache 604800 footer-->

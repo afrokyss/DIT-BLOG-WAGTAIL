@@ -24,7 +24,7 @@
                 <div class="col-md-3">
                 
                 </div>
-                <div class="col-sm-6" style="font-family: 'Merriweather', serif; font-size:100%; text-align:left;">
+                <div class="col-sm-6" style="font-family: 'Merriweather', serif; font-size:100%">
                     {% if self.categories.count %}
                     {% for cat in self.categories.all %}
                     <a href="?category={{ cat.slug }}">
@@ -32,13 +32,13 @@
                     {% if not forloop.last %}, {% endif %}
                     {% endfor %}
                     {% endif %}
-                    <h2 style="font-family: 'Merriweather', serif; color:rgb(4, 51, 4); font-weight:bold"> {% if self.custom_title %}
+                    <h3 style="font-family: 'Merriweather', serif; color:rgb(4, 51, 4); font-weight:bold"> {% if self.custom_title %}
                         {{ self.custom_title }}
                         {% else %}
-                        {{ self.title }}
+                        {{ self.title  }}
                         {% endif %}
                         
-                    </h2>
+                    </h3>
                     {% if self.subtitle %}
                     <h5 style="background-color:yellowgreen">{{ self.subtitle }}</h5>
                     {% endif %}
@@ -65,7 +65,7 @@
                     </a>
                     <br/><br/>
                     {% if self.intro_image %}
-                    {% image self.intro_image fill-700x500 as intro_img %}
+                    {% image self.intro_image fill-650x400 as intro_img %}
                     <img src="{{ intro_img.url }}" class="img-fluid" alt="{{ intro_img.alt }}" style="border-style: solid">
                     {% endif %}
                     
@@ -75,11 +75,13 @@
                     {% endif %}
 
                     <br />
-                    
+                
+                   
                    {% for block in self.content %}
                   {% include_block block %}
                     
-                    {% endfor %} 
+                    {% endfor %}
+                  
                    
    
                     <hr />
