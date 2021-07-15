@@ -437,6 +437,13 @@ class ArticleBlogPage(BlogDetailPage):
         on_delete=models.SET_NULL,
         help_text='Best size for this image will be 1400x400'
     )
+    caption_intro_image = models.TextField(
+        max_length=100,
+        blank=False,
+        null=True,
+        help_text = "photo caption with  your © copyright",
+        
+    )
 
     content_panels = Page.content_panels + [
         FieldPanel("custom_title"),
@@ -447,6 +454,7 @@ class ArticleBlogPage(BlogDetailPage):
         FieldPanel("author_name"),
         ImageChooserPanel("banner_image"),
         ImageChooserPanel("intro_image"),
+        FieldPanel("caption_intro_image"),
         MultiFieldPanel(
             [
                 InlinePanel("blog_authors", label="Author", min_num=1, max_num=4)

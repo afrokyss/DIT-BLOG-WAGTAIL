@@ -68,6 +68,8 @@
                     {% image self.intro_image fill-650x400 as intro_img %}
                     <img src="{{ intro_img.url }}" class="img-fluid" alt="{{ intro_img.alt }}" style="border-style: solid">
                     {% endif %}
+                   
+                    <p> {{ self.caption_intro_image }} </p>
                     
                     <br /><br />
                     {% if self.chapo %}
